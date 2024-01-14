@@ -15,11 +15,13 @@ The Chat Widget is a web component designed for interactive chat-based communica
 The following are the predefined keywords and their corresponding responses in the script.js file:
 
 - **"hi" or "hello":**
-    - *Response(Bot): "How are you doing today? How may I help you?"*
+    - *Response(Bot): "Hi there! How can I help you??"*
 - **"problem" or "issue" or "help":**
     - *Response(Bot): "Let me know what I can do to help!"*
 - **"human" or "person" or "someone":**
-    - *Response(Hannah): "Hello, I am Hannah. How can I help you?"*
+    - *Response(Bot): "No problem! Let me connect you to a customer support agent."*
+- **"any user input after bot responded to connect**
+    - *Response(Hannah): "Hi there!, I am Hannah.<br> <br> How can I help you?"*
 - **"customized message(not a keyword)":**
     - *Response(Bot): "I'm a bot. You said: " + userInput;*
 

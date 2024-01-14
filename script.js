@@ -16,9 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to for custom bot response
     function botResponse(userInput) {
         const lowerUserInput = userInput.toLowerCase();
+        const lastBotMessage = getLastBotMessage();
 
         if (lowerUserInput.includes("hi") || lowerUserInput.includes("hello")) {
-            return "How are you doing today? How may I help you?";
+            return "Hi there! How can I help you?";
         } else if (
             lowerUserInput.includes("problem") ||
             lowerUserInput.includes("issue") ||
@@ -30,10 +31,27 @@ document.addEventListener("DOMContentLoaded", function () {
             lowerUserInput.includes("person") ||
             lowerUserInput.includes("someone")
         ) {
-            return "Hello, I am Hannah. How can I help you?";
-        } else {
-            return "I'm a bot. You said: " + userInput;
+            return "No problem! Let me connect you to a customer support agent.";
+        } else if (
+            lastBotMessage &&
+            lastBotMessage.includes(
+                "No problem! Let me connect you to a customer support agent."
+            )
+        ) {
+            return "Hi there!, I am Hannah.<br> <br> How can I help you?";
         }
+        return "I'm a bot. You said: " + userInput;
+    }
+
+    // Function to get the last bot message from the chat
+    function getLastBotMessage() {
+        const chatMessages = document.querySelectorAll(".chat1 p");
+        if (chatMessages.length > 0) {
+            const lastBotMessage =
+                chatMessages[chatMessages.length - 1].textContent;
+            return lastBotMessage;
+        }
+        return null;
     }
 
     // Function to handle user input
@@ -74,12 +92,12 @@ document.addEventListener("DOMContentLoaded", function () {
         chat1.classList.add("chat1");
         const timestamp = getCurrentTimestamp();
         chat1.innerHTML = `
-            <img src="media/avatar2.svg" alt="">
-            <div>
-                <p>${message}</p>
-                <span>${timestamp}</span>
-            </div>
-        `;
+        <img src="media/avatar2.svg" alt="">
+        <div>
+            <p class="bot-message">${message}</p>
+            <span>${timestamp}</span>
+        </div>
+    `;
         main.appendChild(chat1);
     }
 
